@@ -1,6 +1,6 @@
-!include https://raw.githubusercontent.com/scarrier/C4-PlantUML/latest/C4_Context.puml
-' uncomment the following line and comment the first to use locally
-' !include C4_Context.puml
+!include https://raw.githubusercontent.com/thardy/c4-plant-uml/refs/heads/main/c4-context.puml
+' uncomment the following line and comment the above to use locally
+' !include c4-context.puml
 
 ' Scope: A single software system.
 ' Primary elements: Containers within the software system in scope.
@@ -39,7 +39,7 @@ legend right
 |<$PERSON_BG_COLOR> person |
 |<$SYSTEM_BG_COLOR> system |
 |<$CONTAINER_BG_COLOR> container |
-|<$EXTERNAL_SYSTEM_BG_COLOR> internal system |
+|<$EXTERNAL_SYSTEM_BG_COLOR> external system |
 |<$THIRD_PARTY_SYSTEM_BG_COLOR> third party system |
 endlegend
 !endprocedure

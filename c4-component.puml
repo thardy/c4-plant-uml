@@ -1,0 +1,72 @@
+!include https://raw.githubusercontent.com/thardy/c4-plant-uml/refs/heads/main/c4-container.puml
+' uncomment the following line and comment the first to use locally
+' !include c4-container.puml
+
+' Scope: A single container.
+' Primary elements: Components within the container in scope.
+' Supporting elements: Containers (within the software system in scope) plus people and software systems directly connected to the components.
+' Intended audience: Software architects and developers.
+
+' Colors
+' ##################################
+
+!global $COMPONENT_BG_COLOR = "#85BBF0"
+
+' Styling
+' ##################################
+
+skinparam rectangle<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor $COMPONENT_BG_COLOR
+    BorderColor #78A8D8
+}
+
+skinparam database<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor $COMPONENT_BG_COLOR
+    BorderColor #78A8D8
+}
+
+' Layout
+' ##################################
+
+!procedure LAYOUT_WITH_LEGEND()
+hide stereotype
+legend right
+|<color:$LEGEND_TITLE_COLOR>**Legend**</color> |
+|<$PERSON_BG_COLOR> person |
+|<$SYSTEM_BG_COLOR> system |
+|<$CONTAINER_BG_COLOR> container |
+|<$COMPONENT_BG_COLOR> component |
+|<$EXTERNAL_SYSTEM_BG_COLOR> external system |
+|<$THIRD_PARTY_SYSTEM_BG_COLOR> third party system |
+endlegend
+!endprocedure
+
+' Elements
+' ##################################
+
+!function $getComponent($label, $techn, $descr, $sprite)
+    !if ($descr != "")
+        !$descr = "\n" + $descr
+    !endif
+
+    !if ($sprite == "")
+        !return '=='+$label+'\n<size:'+$TECHN_FONT_SIZE+'>[Component: '+$techn+']</size>\n '+$descr
+    !endif
+
+    !if ($sprite != "")
+        !return '<$'+$sprite+'>\n=='+$label+'\n<size:'+$TECHN_FONT_SIZE+'>[Component: '+$techn+']</size>\n '+$descr
+    !endif
+
+!endfunction
+
+!unquoted procedure Component($alias, $label, $techn, $descr="", $sprite="")
+rectangle "$getComponent($label, $techn, $descr, $sprite)" <<component>> as $alias
+!endprocedure
+
+!unquoted procedure ComponentDb($alias, $label, $techn, $descr="", $sprite="")
+database "$getComponent($label, $techn, $descr, $sprite)" <<component>> as $alias
+!endprocedure
